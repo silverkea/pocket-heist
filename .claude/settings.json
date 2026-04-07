@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "deny": [
+      "Bash(python scripts/set-vercel-env.py*)",
+      "Bash(python3 scripts/set-vercel-env.py*)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
