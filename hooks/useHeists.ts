@@ -63,7 +63,7 @@ export function useHeists(mode: HeistMode): UseHeistsResult {
       clearTimeout(timer)
       unsubscribe?.()
     }
-  }, [mode, authLoading, user?.uid])
+  }, [mode, authLoading, user])
 
   return { heists, loading, error }
 }

@@ -1,5 +1,5 @@
-import { renderHook, act } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { renderHook } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { onSnapshot } from 'firebase/firestore'
 import { useHeist } from '@/hooks/useHeist'
 
@@ -47,6 +47,7 @@ describe('useHeist', () => {
   })
 
   it('returns heist and loading: false once snapshot emits with exists: true', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_ref, onNext: any) => {
       onNext({ exists: () => true, data: () => mockHeist, id: 'heist-1' })
       return vi.fn()
@@ -61,6 +62,7 @@ describe('useHeist', () => {
   })
 
   it('sets notFound: true and loading: false when snapshot does not exist', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_ref, onNext: any) => {
       onNext({ exists: () => false })
       return vi.fn()
@@ -75,6 +77,7 @@ describe('useHeist', () => {
   })
 
   it('sets error and loading: false when onSnapshot emits an error', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_ref, _onNext: any, onError: any) => {
       onError(new Error('Firestore error'))
       return vi.fn()
@@ -90,6 +93,7 @@ describe('useHeist', () => {
 
   it('calls unsubscribe on unmount', () => {
     const mockUnsubscribe = vi.fn()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_ref, onNext: any) => {
       onNext({ exists: () => true, data: () => mockHeist, id: 'heist-1' })
       return mockUnsubscribe

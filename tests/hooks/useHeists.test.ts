@@ -64,6 +64,7 @@ describe('useHeists', () => {
   })
 
   it('returns heists and loading: false once onSnapshot emits a snapshot', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_q, onNext: any) => {
       onNext({ docs: [{ data: () => mockHeist }] })
       return vi.fn()
@@ -79,6 +80,7 @@ describe('useHeists', () => {
   })
 
   it('returns error state and loading: false when onSnapshot emits an error', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_q, _onNext: any, onError: any) => {
       onError(new Error('Firestore error'))
       return vi.fn()
@@ -133,6 +135,7 @@ describe('useHeists', () => {
   })
 
   it('calls orderBy deadline desc and limit 50 in expired mode', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_q, onNext: any) => {
       onNext({ docs: [] })
       return vi.fn()
@@ -148,6 +151,7 @@ describe('useHeists', () => {
 
   it('calls the unsubscribe function when the component unmounts after subscription is created', () => {
     const mockUnsubscribe = vi.fn()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_q, onNext: any) => {
       onNext({ docs: [] })
       return mockUnsubscribe
@@ -170,6 +174,7 @@ describe('useHeists', () => {
   })
 
   it('re-subscribes when mode changes between renders', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockOnSnapshot.mockImplementation((_q, onNext: any) => {
       onNext({ docs: [] })
       return vi.fn()

@@ -19,6 +19,9 @@ const baseData = {
   createdAt: mockTimestamp(new Date('2026-04-05')),
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { assignedTo: _a, assignedToCodename: _b, ...dataWithoutAssignee } = baseData
+
 describe('heistConverter', () => {
   describe('fromFirestore', () => {
     it('returns createdAt as a Date instance', () => {
@@ -38,18 +41,15 @@ describe('heistConverter', () => {
     })
 
     it('does not throw when assignedTo and assignedToCodename are absent', () => {
-      const { assignedTo: _a, assignedToCodename: _b, ...dataWithoutAssignee } = baseData
       expect(() => heistConverter.fromFirestore(makeSnapshot(dataWithoutAssignee))).not.toThrow()
     })
 
     it('defaults absent assignedTo to null', () => {
-      const { assignedTo: _a, assignedToCodename: _b, ...dataWithoutAssignee } = baseData
       const result = heistConverter.fromFirestore(makeSnapshot(dataWithoutAssignee))
       expect(result.assignedTo).toBeNull()
     })
 
     it('defaults absent assignedToCodename to null', () => {
-      const { assignedTo: _a, assignedToCodename: _b, ...dataWithoutAssignee } = baseData
       const result = heistConverter.fromFirestore(makeSnapshot(dataWithoutAssignee))
       expect(result.assignedToCodename).toBeNull()
     })
